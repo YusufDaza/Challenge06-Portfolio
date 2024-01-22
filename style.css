@@ -99,7 +99,7 @@ h1 {
 }
 .weather-data .current-weather {
   color: #fff;
-  background: #5372F0;
+  background: #0aa219;
   border-radius: 5px;
   padding: 20px 70px 20px 20px;
   display: flex;
@@ -138,7 +138,7 @@ h1 {
   padding: 18px 16px;
   list-style: none;
   width: calc(100% / 5);
-  background: #6C757D;
+  background: #092e10;
   border-radius: 5px;
 }
 .weather-cards .card h3 {
