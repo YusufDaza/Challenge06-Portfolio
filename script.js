@@ -5,7 +5,7 @@ const additionalButtons = document.querySelectorAll(".additional-btn");
 const currentWeatherDiv = document.querySelector(".current-weather");
 const weatherCardsDiv = document.querySelector(".weather-cards");
 
-const API_KEY = "b40f5a5aace8ad793b552f136f93aa74"; // API key for OpenWeatherMap API
+const API_KEY = "0ed27acb23bb73602a93b31db62ea8aa"; // API key for OpenWeatherMap API
 
 const createWeatherCard = (cityName, weatherItem, index) => {
     const currentDate = new Date();
@@ -21,13 +21,13 @@ const createWeatherCard = (cityName, weatherItem, index) => {
                     <h6>Humidity: ${weatherItem.main.humidity}%</h6>
                 </div>
                 <div class="icon">
-                    <img src="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@4x.png" alt="weather-icon">
+                    <img src="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}.png" alt="weather-icon">
                     <h6>${weatherItem.weather[0].description}</h6>
                 </div>`;
     } else {
         return `<li class="card">
                     <h3>(${formattedDate})</h3>
-                    <img src="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}@4x.png" alt="weather-icon">
+                    <img src="https://openweathermap.org/img/wn/${weatherItem.weather[0].icon}.png" alt="weather-icon">
                     <h6>Temp: ${(weatherItem.main.temp - 273.15).toFixed(2)}°C</h6>
                     <h6>Wind: ${weatherItem.wind.speed} M/S</h6>
                     <h6>Humidity: ${weatherItem.main.humidity}%</h6>
@@ -36,38 +36,45 @@ const createWeatherCard = (cityName, weatherItem, index) => {
 }
 
 const getWeatherDetails = (cityName, latitude, longitude) => {
-    const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&cnt=6&appid=${API_KEY}`;
+    const WEATHER_API_URL = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${API_KEY}`;
 
-    fetch(WEATHER_API_URL).then(response => response.json()).then(data => {
-        const sixDaysForecast = data.list;
+    fetch(WEATHER_API_URL)
+        .then(response => response.json())
+        .then(data => {
+            const fiveDaysForecast = data.list;
 
-        cityInput.value = "";
-        currentWeatherDiv.innerHTML = "";
-        weatherCardsDiv.innerHTML = "";
+            currentWeatherDiv.innerHTML = "";
+            weatherCardsDiv.innerHTML = "";
 
-        sixDaysForecast.forEach((weatherItem, index) => {
-            const html = createWeatherCard(cityName, weatherItem, index);
-            if (index === 0) {
-                currentWeatherDiv.insertAdjacentHTML("beforeend", html);
-            } else {
-                weatherCardsDiv.insertAdjacentHTML("beforeend", html);
-            }
+            fiveDaysForecast.forEach((weatherItem, index) => {
+                if (index < 6) {
+                    const html = createWeatherCard(cityName, weatherItem, index);
+                    if (index === 0) {
+                        currentWeatherDiv.insertAdjacentHTML("beforeend", html);
+                    } else {
+                        weatherCardsDiv.insertAdjacentHTML("beforeend", html);
+                    }
+                }
+            });
+        })
+        .catch(() => {
+            alert("An error occurred while fetching the weather forecast!");
         });
-    }).catch(() => {
-        alert("An error occurred while fetching the weather forecast!");
-    });
 }
 
 const getCityCoordinates = (cityName) => {
     const API_URL = `https://api.openweathermap.org/geo/1.0/direct?q=${cityName}&limit=1&appid=${API_KEY}`;
 
-    fetch(API_URL).then(response => response.json()).then(data => {
-        if (!data.length) return alert(`No coordinates found for ${cityName}`);
-        const { lat, lon } = data[0];
-        getWeatherDetails(cityName, lat, lon);
-    }).catch(() => {
-        alert("An error occurred while fetching the coordinates!");
-    });
+    fetch(API_URL)
+        .then(response => response.json())
+        .then(data => {
+            if (!data.length) return alert(`No coordinates found for ${cityName}`);
+            const { lat, lon } = data[0];
+            getWeatherDetails(cityName, lat, lon);
+        })
+        .catch(() => {
+            alert("An error occurred while fetching the coordinates!");
+        });
 }
 
 const getUserCoordinates = () => {
@@ -75,12 +82,15 @@ const getUserCoordinates = () => {
         position => {
             const { latitude, longitude } = position.coords;
             const API_URL = `https://api.openweathermap.org/geo/1.0/reverse?lat=${latitude}&lon=${longitude}&limit=1&appid=${API_KEY}`;
-            fetch(API_URL).then(response => response.json()).then(data => {
-                const { name } = data[0];
-                getWeatherDetails(name, latitude, longitude);
-            }).catch(() => {
-                alert("An error occurred while fetching the city name!");
-            });
+            fetch(API_URL)
+                .then(response => response.json())
+                .then(data => {
+                    const { name } = data[0];
+                    getWeatherDetails(name, latitude, longitude);
+                })
+                .catch(() => {
+                    alert("An error occurred while fetching the city name!");
+                });
         },
         error => {
             if (error.code === error.PERMISSION_DENIED) {

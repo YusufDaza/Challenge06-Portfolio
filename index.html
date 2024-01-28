@@ -1,77 +1,89 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <title>Weather App Project JavaScript</title>
-    <link rel="stylesheet" href="style.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <script src="script.js" defer></script>
-  </head>
-  <body> 
-    <h1 style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Weather Dashboard</h1>
-    <div class="container">
-      <div class="weather-input">
-        <h3 style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">Enter a City Name</h3>
-        <input style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;" class="city-input" type="text" placeholder="E.g., New York, London, Tokyo">
-        <button style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;" class="search-btn">Search</button>
-        <div class="separator"></div>
-        <button style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;" class="location-btn">Use Current Location</button>
-        <div style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;" class="button-group">
-          <button class="additional-btn" onclick="getWeather('Vancouver')">Vancouver</button>
-          <button class="additional-btn" onclick="getWeather('Istanbul')">Istanbul</button>
-          <button class="additional-btn" onclick="getWeather('Sao Paulo')">Sao Paulo</button>
-          <button class="additional-btn" onclick="getWeather('Hong Kong')">Hong Kong</button>
-          <button class="additional-btn" onclick="getWeather('Rome')">Rome</button>
-          <button class="additional-btn" onclick="getWeather('Mexico City')">Mexico City</button>
-          <button class="additional-btn" onclick="getWeather('Sydney')">Sydney</button>
-        </div>
-      </div style="font-family: 'Trebuchet">
-      <div class="weather-data">
-        <div class="current-weather">
-          <div class="details">
-            <h2>_______ ( ______ )</h2>
-            <h6>Temperature: __°C</h6>
-            <h6>Wind: __ M/S</h6>
-            <h6>Humidity: __%</h6>
-          </div>
-        </div>
-        <div style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;" class="days-forecast">
-          <h2>5-Day Forecast</h2>
-          <ul class="weather-cards">
-            <li class="card">
-              <h3>( ______ )</h3>
-              <h6>Temp: __C</h6>
-              <h6>Wind: __ M/S</h6>
-              <h6>Humidity: __%</h6>
-            </li>
-            <li class="card">
-              <h3>( ______ )</h3>
-              <h6>Temp: __C</h6>
-              <h6>Wind: __ M/S</h6>
-              <h6>Humidity: __%</h6>
-            </li>
-            <li class="card">
-              <h3>( ______ )</h3>
-              <h6>Temp: __C</h6>
-              <h6>Wind: __ M/S</h6>
-              <h6>Humidity: __%</h6>
-            </li>
-            <li class="card">
-              <h3>( ______ )</h3>
-              <h6>Temp: __C</h6>
-              <h6>Wind: __ M/S</h6>
-              <h6>Humidity: __%</h6>
-            </li>
-            <li class="card">
-              <h3>( ______ )</h3>
-              <h6>Temp: __C</h6>
-              <h6>Wind: __ M/S</h6>
-              <h6>Humidity: __%</h6>
-            </li>
-          </ul>
+
+<head>
+  <meta charset="utf-8">
+  <title>Weather App Project JavaScript</title>
+  <link rel="stylesheet" href="style.css">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <script src="script.js" defer></script>
+</head>
+
+<body>
+  <h1 style="font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
+    Weather Dashboard</h1>
+  <div class="container">
+    <div class="weather-input">
+      <h3
+        style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;">
+        Enter a City Name</h3>
+      <input
+        style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"
+        class="city-input" type="text" placeholder="E.g., New York, London, Tokyo">
+      <button
+        style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"
+        class="search-btn">Search</button>
+      <div class="separator"></div>
+      <button
+        style="font-family: 'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;"
+        class="location-btn">Use Current Location</button>
+      <div class="button-group">
+        <button class="additional-btn" onclick="getWeather('Toronto')">Toronto</button>
+        <button class="additional-btn" onclick="getWeather('Istanbul')">Istanbul</button>
+        <button class="additional-btn" onclick="getWeather('Sao Paulo')">Sao Paulo</button>
+        <button class="additional-btn" onclick="getWeather('Paris')">Paris</button>
+        <button class="additional-btn" onclick="getWeather('Hong Kong')">Hong Kong</button>
+        <button class="additional-btn" onclick="getWeather('Amsterdam')">Amsterdam</button>
+        <button class="additional-btn" onclick="getWeather('Sydney')">Sydney</button>
+      </div>
+
+    </div>
+    <div class="weather-data">
+      <div class="current-weather">
+        <div class="details">
+          <h2>_______ ( ______ )</h2>
+          <h6>Temperature: __°C</h6>
+          <h6>Wind: __ M/S</h6>
+          <h6>Humidity: __%</h6>
         </div>
       </div>
+      <div class="days-forecast">
+        <h2>5-Day Forecast</h2>
+        <ul class="weather-cards">
+          <li class="card">
+            <h3>( ______ )</h3>
+            <h6>Temp: __C</h6>
+            <h6>Wind: __ M/S</h6>
+            <h6>Humidity: __%</h6>
+          </li>
+          <li class="card">
+            <h3>( ______ )</h3>
+            <h6>Temp: __C</h6>
+            <h6>Wind: __ M/S</h6>
+            <h6>Humidity: __%</h6>
+          </li>
+          <li class="card">
+            <h3>( ______ )</h3>
+            <h6>Temp: __C</h6>
+            <h6>Wind: __ M/S</h6>
+            <h6>Humidity: __%</h6>
+          </li>
+          <li class="card">
+            <h3>( ______ )</h3>
+            <h6>Temp: __C</h6>
+            <h6>Wind: __ M/S</h6>
+            <h6>Humidity: __%</h6>
+          </li>
+          <li class="card">
+            <h3>( ______ )</h3>
+            <h6>Temp: __C</h6>
+            <h6>Wind: __ M/S</h6>
+            <h6>Humidity: __%</h6>
+          </li>
+        </ul>
+      </div>
     </div>
-    
-  </body>
+  </div>
+</body>
+
 </html>
