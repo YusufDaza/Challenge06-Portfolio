@@ -32,12 +32,22 @@ N/A
 
 ![alt text](assets/001.png)
 
+## Live Link
+
+https://yusufdaza.github.io/Challenge06-Portfolio/  
+
+## Github Link
+
+https://github.com/YusufDaza/Challenge06-Portfolio
+
 ## Credits
 
 - [Joseph Daza]
 
 Feel free to customize this section with any additional collaborators, third-party assets, or tutorials you utilized.
 
+## License
 
+The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [https://choosealicense.com/](https://choosealicense.com/).
 
 
